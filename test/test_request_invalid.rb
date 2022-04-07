@@ -20,6 +20,7 @@ class TestRequestInvalid < Minitest::Test
 
   def setup
     @host = '127.0.0.1'
+    @server = nil
 
     @ios = []
 
@@ -43,7 +44,7 @@ class TestRequestInvalid < Minitest::Test
   end
 
   def teardown
-    @server.stop(true)
+    @server.stop(true) unless @server.nil?
     @ios.each { |io| io.close if io && !io.closed? }
   end
 
